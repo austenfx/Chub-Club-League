@@ -72,7 +72,7 @@ async function GetDatesForGameWeek(gameweek){
     }
 }
 
-async function GetGameDataList(dates, nowDate){
+async function GetGameDataList(dates){
     const response = await axios.get(InfotoURL(dates));
     const result = response.data;
 
