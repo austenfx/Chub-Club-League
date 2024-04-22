@@ -10,6 +10,10 @@
 
     <form action="/games">
         <input type="number" name="week">
+        <select name="league">
+            <option value="premier-league">Premier League</option>
+            <option value="championship">ChampionShip</option>
+        </select>
         <button type="submit">Submit</button>
     </form>
 
@@ -20,7 +24,7 @@
                     <option><%= data[i] %></option>
                     
                 <% } %>
-          </select>
+        </select>
     </form>
     <% } %>
 

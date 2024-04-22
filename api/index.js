@@ -15,8 +15,8 @@ app.get("/", (req, res) => {
 app.get("/games", async (req, res) => {
     try {
         let dates = await GetDatesForGameWeek(req.query.week);
-
-        let gameDataList = await GetGameDataList(dates);
+        let league = req.query.league;
+        let gameDataList = await GetGameDataList(dates, league);
         let gameList = FormatGameData(gameDataList);
 
         res.render("index.ejs", { data: gameList });
@@ -26,7 +26,7 @@ app.get("/games", async (req, res) => {
     
 })
 
-function InfotoURL(dates){
+function InfotoURL(dates, league){
     let info = [
         'https://push.api.bbci.co.uk/batch?t=',
         'data',
@@ -38,7 +38,7 @@ function InfotoURL(dates){
         'todayDate',
         dates.now,
         'tournament',
-        'premier-league',
+        league,
         'version',
         '2.4.6?timeout=5'
       ];
@@ -72,8 +72,8 @@ async function GetDatesForGameWeek(gameweek){
     }
 }
 
-async function GetGameDataList(dates){
-    const response = await axios.get(InfotoURL(dates));
+async function GetGameDataList(dates, league){
+    const response = await axios.get(InfotoURL(dates, league));
     const result = response.data;
 
     let gameDataList = [];
