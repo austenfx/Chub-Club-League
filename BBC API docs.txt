@@ -1,5 +1,3 @@
-In progress autonomous premier league prediction game.
-
 DOCUMENTATION FOR BBC SPORT INTERNAL API
 
 Base URL: https://push.api.bbci.co.uk
@@ -41,11 +39,42 @@ italian-serie-a
 spanish-la-liga
 champions-league
 
+OR team:
+Returns games for a certain team regardless of competition
+If both team and tournament params are present, tournament will override and team will be obselete.
+
 version:
-Version of API?
+Version of API
 Current version is 2.4.6
 
 ?timeout=5:
 Extra bit on the end used by BBC requests
 Not necessary for completion but most likely useful
 Will require further investigation on exact units
+
+
+Competition Table:
+
+data:
+bbc-morph-sport-tables-data
+
+competition:
+Competition for table wanted
+May be multiple tables for comps with groups
+
+version:
+Version of API
+Last known supported table version is 2.0.7
+July 14th 2022 is last known snapshot of old version of the website.
+Since then, table requests have not been visible.
+Unknown if table requests will work on new versions.
+Further testing required.
+
+?timeout=5:
+Extra bit on the end used by BBC requests
+Not necessary for completion but most likely useful
+Will require further investigation on exact units
+
+sport:
+Can specify that it is football
+Will investigate possibility of adding other sports to API wrapper

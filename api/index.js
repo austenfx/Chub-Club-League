@@ -42,9 +42,10 @@ function InfotoURL(dates, league){
         dates.start,
         'team',
         'arsenal',
+        'tournament',
+        league,
         'todayDate',
         dates.now,
-
         'version',
         '2.4.6?timeout=5'
       ];
