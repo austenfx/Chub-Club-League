@@ -14,12 +14,17 @@ app.get("/", (req, res) => {
 
 app.get("/games", async (req, res) => {
     try {
-        let dates = await GetDatesForGameWeek(req.query.week);
+        //let dates = await GetDatesForGameWeek(req.query.week);
+        let dates = {
+            start: req.query.startDate,
+            end: req.query.endDate,
+            now: DatetoISO(new Date())
+        }
         let league = req.query.league;
         let gameDataList = await GetGameDataList(dates, league);
         let gameList = FormatGameData(gameDataList);
 
-        res.render("index.ejs", { data: gameList });
+        res.render("index.ejs", { data: gameList, dates: dates });
     } catch (error) {
         res.send(error.message);
     }
@@ -35,10 +40,11 @@ function InfotoURL(dates, league){
         dates.end,
         'startDate',
         dates.start,
+        'team',
+        'arsenal',
         'todayDate',
         dates.now,
-        'tournament',
-        league,
+
         'version',
         '2.4.6?timeout=5'
       ];
@@ -79,12 +85,15 @@ async function GetGameDataList(dates, league){
     let gameDataList = [];
     
     try {
-        let rawGamesList = result.payload[0].body.matchData[0].tournamentDatesWithEvents;
-        Object.values(rawGamesList).forEach(date => {
-            date[0].events.forEach(game => {
-                gameDataList.push({
-                    homeTeam: game.homeTeam.name.first,
-                    awayTeam: game.awayTeam.name.first,
+        let rawTournamentList = result.payload[0].body.matchData;
+        Object.values(rawTournamentList).forEach(comp => {
+            comp.tournamentDatesWithEvents
+            Object.values(comp.tournamentDatesWithEvents).forEach(date => {
+                date[0].events.forEach(game => {
+                    gameDataList.push({
+                        homeTeam: game.homeTeam.name.first,
+                        awayTeam: game.awayTeam.name.first,
+                    });
                 });
             });
         });

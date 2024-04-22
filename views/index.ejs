@@ -9,15 +9,17 @@
     <h1>Chub Club League</h1>
 
     <form action="/games">
-        <input type="number" name="week">
+        <input type="date" name="startDate">
+        <input type="date" name="endDate">
         <select name="league">
             <option value="premier-league">Premier League</option>
-            <option value="championship">ChampionShip</option>
+            <option value="championship">Championship</option>
         </select>
         <button type="submit">Submit</button>
     </form>
 
     <% if (locals.data) { %>
+        <p><%= dates.start %> to <%= dates.end %></p>
     <form action="/submit">
         <select name="type" class="form-select">
                 <% for (let i = 0; i < data.length; i++) { %>
