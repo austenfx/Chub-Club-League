@@ -18,7 +18,7 @@ app.get("/games", async (req, res) => {
         let dates = {
             start: req.query.startDate,
             end: req.query.endDate,
-            now: DatetoISO(new Date())
+            now: req.query.startDate
         }
         let league = req.query.league;
         let gameDataList = await GetGameDataList(dates, league);
@@ -40,8 +40,6 @@ function InfotoURL(dates, league){
         dates.end,
         'startDate',
         dates.start,
-        'team',
-        'arsenal',
         'tournament',
         league,
         'todayDate',

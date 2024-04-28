@@ -78,3 +78,107 @@ Will require further investigation on exact units
 sport:
 Can specify that it is football
 Will investigate possibility of adding other sports to API wrapper
+
+
+Commentary Data:
+
+data:
+bbc-morph-lx-commentary-data-paged
+
+discipline:
+For football results: soccer
+
+eventId:
+eventKey found in other sources such as score and fixture lists
+e.g. EFBO2367885
+
+isUk:
+Unaware what this is regarding, seems to be necessary for prem at least
+must be: false
+
+limit:
+must set a limit
+BBC default is 20
+
+nitroKey:
+lx-nitro
+
+pageNumber:
+number of page to retrieve
+total number of pages found in each page
+
+version:
+1.5.6
+
+
+Header Data:
+
+data:
+bbc-morph-sport-football-header-data
+
+event:
+eventKey found in other sources such as score and fixture lists
+e.g. EFBO2367885
+
+version:
+2.0.4
+
+
+Team lineups data:
+
+data:
+bbc-morph-sport-football-team-lineups-data
+
+event:
+eventKey found in other sources such as score and fixture lists
+e.g. EFBO2367885
+
+version:
+1.0.8
+
+
+BBC player rater data:
+
+data:
+bbc-morph-sport-player-rater-lineup-data
+
+event:
+eventKey
+
+version:
+4.7.0
+
+
+
+Alternate fixture list:
+
+data:
+bbc-morph-sportsdata-soccer-fixture-list-tournament
+
+date:
+singular date for games on that day
+e.g. "2024-04-28"
+
+tournament:
+tournament wanted for list
+
+version:
+2.2.3
+
+
+
+
+Alternate table:
+
+data:
+bbc-morph-sport-football-table-oppm-model
+
+date:
+singular date for games on that day
+e.g. "20240428"
+
+tournament:
+tournament wanted for table
+
+version:
+1.0.10
